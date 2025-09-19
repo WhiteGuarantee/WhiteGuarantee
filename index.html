@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WhiteGuarantee — Поддержка</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="container" id="appRoot">
+    <header>
+      <div>
+        <h1>WhiteGuarantee</h1>
+        <p class="subtitle">Поддержка</p>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Переключить тему">ТЕМА</button>
+    </header>
+
+    <div class="card">
+    <form id="support-form">
+      <div class="field">
+        <label for="subject">Тема</label>
+        <input id="subject" name="subject" type="text" placeholder="Коротко опишите проблему" required />
+      </div>
+      <div class="field">
+        <label for="message">Сообщение</label>
+        <textarea id="message" name="message" rows="6" placeholder="Опишите детали" required></textarea>
+      </div>
+      <div class="field inline">
+        <div>
+          <label for="contact">Связь (опц.)</label>
+          <input id="contact" name="contact" type="text" placeholder="@username или email" />
+        </div>
+        <div>
+          <label for="lang">Язык</label>
+          <select id="lang" name="lang">
+            <option value="ru">Русский</option>
+            <option value="en">English</option>
+            <option value="uk">Українська</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="primary">Отправить</button>
+      <p class="hint" id="dbg"></p>
+      <p class="hint">Файлы отправьте в чат бота сразу после заявки.</p>
+    </form>
+    </div>
+
+    <footer>
+      <small>© WhiteGuarantee · <a class="link" href="./stats.html">Статистика</a></small>
+      <div class="kpi-grid" id="miniStats" style="display:none">
+        <div class="kpi"><div class="val" id="kpiDeals">—</div><div class="lbl">Проведенные сделки</div></div>
+        <div class="kpi"><div class="val" id="kpiUsers">—</div><div class="lbl">Пользователи в боте</div></div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./main.js"></script>
+  <script>
+    // Инициализация темы до загрузки main.js
+    (function(){
+      try {
+        var saved = localStorage.getItem('wg_theme');
+        if (saved === 'light') document.documentElement.setAttribute('data-theme','light');
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>
