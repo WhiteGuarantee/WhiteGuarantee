@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WhiteGuarantee — Статистика</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>WhiteGuarantee</h1>
+        <p class="subtitle">Статистика</p>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Переключить тему">Тема</button>
+    </header>
+
+    <section class="kpi-grid">
+      <div class="kpi"><div class="val" id="kpiDeals">2.246</div><div class="lbl">Проведенные сделки</div></div>
+      <div class="kpi"><div class="val" id="kpiUsers">12.428</div><div class="lbl">Пользователи в боте</div></div>
+    </section>
+
+    <p class="hint"></p>
+
+    <footer>
+      <small>© WhiteGuarantee</small>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      try {
+        var saved = localStorage.getItem('wg_theme');
+        if (saved === 'light') document.documentElement.setAttribute('data-theme','light');
+      } catch(e) {}
+      var btn = document.getElementById('themeToggle');
+      function applyTheme(next){
+        if(next === 'light') document.documentElement.setAttribute('data-theme','light');
+        else document.documentElement.removeAttribute('data-theme');
+      }
+      if(btn){
+        btn.addEventListener('click', function(){
+          var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+          var next = isLight ? 'dark' : 'light';
+          applyTheme(next);
+          try { localStorage.setItem('wg_theme', next); } catch(e) {}
+        });
+      }
+      var tg = window.Telegram?.WebApp; if(tg){ tg.ready(); tg.expand(); }
+    })();
+  </script>
+</body>
+</html>
+
+
